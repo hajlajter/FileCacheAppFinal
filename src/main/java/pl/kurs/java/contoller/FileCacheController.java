@@ -38,7 +38,7 @@ public class FileCacheController {
     }
 
     @GetMapping("/file/extension/java")
-    public ResponseEntity<Iterable<MultipartFile>> getFilesWithJavaExtension() {
+    public ResponseEntity<List<MultipartFile>> getFilesWithJavaExtension() {
         return ResponseEntity.status(HttpStatus.FOUND).body(fileService.getAllFilesWithJavaExtension());
     }
 }
