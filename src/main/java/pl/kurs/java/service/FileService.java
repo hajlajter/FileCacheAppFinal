@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 public class FileService {
 
+    @Autowired
     FileRepository fileRepository;
 
     public void save(MultipartFile file) {
