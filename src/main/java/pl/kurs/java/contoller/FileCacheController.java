@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import pl.kurs.java.model.Model;
 import pl.kurs.java.service.FileService;
 
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class FileCacheController {
     }
 
     @GetMapping("/file/extension/java")
-    public ResponseEntity<List<MultipartFile>> getFilesWithJavaExtension() {
+    public ResponseEntity<Iterable<Model>> getFilesWithJavaExtension() {
         return ResponseEntity.status(HttpStatus.FOUND).body(fileService.getAllFilesWithJavaExtension());
     }
 }
