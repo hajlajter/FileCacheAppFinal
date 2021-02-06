@@ -10,6 +10,7 @@ import pl.kurs.java.repository.FileRepository;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +29,9 @@ public class FileService {
         return fileRepository.findById(Long.parseLong(name)).get();
     }
 
-    public List<FileModel> getAllFilesWithJavaExtension(){
-        return fileRepository.findAll();
+    public List<FileModel> getAllFilesWithExtension(String extension) {
+        return fileRepository.findAll().stream()
+                .filter(x -> x.getName().endsWith("." + extension))
+                .collect(Collectors.toList());
     }
 }

@@ -45,8 +45,8 @@ public class FileCacheController {
                 .body(oneFile.getData());
     }
 
-    @GetMapping("/file/extension/java")
-    public ResponseEntity<List<FileModel>> getFilesWithJavaExtension() {
-        return ResponseEntity.status(HttpStatus.FOUND).body(fileService.getAllFilesWithJavaExtension());
+    @GetMapping("/file/extension/{extension}")
+    public ResponseEntity<List<FileModel>> getFilesWithExtension(@PathVariable("extension") String extension) {
+        return ResponseEntity.status(HttpStatus.FOUND).body(fileService.getAllFilesWithExtension(extension));
     }
 }

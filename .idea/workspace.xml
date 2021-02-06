@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/kurs/java/contoller/FileCacheController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kurs/java/contoller/FileCacheController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/kurs/java/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kurs/java/service/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612616265075</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added ID showing">
+      <created>1612616510722</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1612616510722</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -187,7 +193,8 @@
     <MESSAGE value="added saving ant connect to mysql database, locally" />
     <MESSAGE value="added saving ant connect to mysql database, locally v2" />
     <MESSAGE value="added downloading" />
-    <option name="LAST_COMMIT_MESSAGE" value="added downloading" />
+    <MESSAGE value="added ID showing" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ID showing" />
   </component>
   <component name="WindowStateProjectService">
     <state x="526" y="216" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1612616079154">
@@ -202,10 +209,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="504" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1612475218806" />
-    <state x="561" y="0" key="CommitChangelistDialog2" timestamp="1612616264493">
+    <state x="561" y="0" key="CommitChangelistDialog2" timestamp="1612616510105">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="561" y="0" key="CommitChangelistDialog2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1612616264493" />
+    <state x="561" y="0" key="CommitChangelistDialog2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1612616510105" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1612616417192">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -234,10 +241,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="56" key="SettingsEditor/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1612544428044" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1612616268676">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1612616516535">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1612616268676" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1612616516535" />
     <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1612613271112">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
