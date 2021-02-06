@@ -17,10 +17,11 @@ public class FileService {
 
     private final FileRepository fileRepository;
 
-    public void save(MultipartFile file) throws IOException {
+    public Long save(MultipartFile file) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         FileModel fileModel = new FileModel(0, fileName, file.getContentType(), file.getBytes());
-        fileRepository.save(fileModel);
+        FileModel save = fileRepository.save(fileModel);
+        return save.getId();
     }
 
     public FileModel getOneFile(String name) throws IOException {

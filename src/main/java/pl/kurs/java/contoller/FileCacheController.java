@@ -23,18 +23,19 @@ public class FileCacheController {
     private FileService fileService;
 
     @RequestMapping("/")
-    public ResponseEntity<String> welcome(){
+    public ResponseEntity<String> welcome() {
         return ResponseEntity.status(HttpStatus.OK).body("Welcome on my site");
     }
 
     @PostMapping("/upload")
     public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) throws IOException {
+        Long save = null;
         if (!file.isEmpty()) {
-            fileService.save(file);
+            save = fileService.save(file);
         } else {
             throw new RuntimeException("Please load a file");
         }
-        return ResponseEntity.status(HttpStatus.OK).body("File added");
+        return ResponseEntity.status(HttpStatus.OK).body("ID: " + save);
     }
 
     @GetMapping("/file/{name}")
