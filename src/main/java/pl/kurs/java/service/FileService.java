@@ -9,6 +9,7 @@ import pl.kurs.java.repository.FileRepository;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,10 +23,11 @@ public class FileService {
         fileRepository.save(fileModel);
     }
 
-    public void getOneFile(String name) throws IOException {
+    public FileModel getOneFile(String name) throws IOException {
+        return fileRepository.findById(Long.parseLong(name)).get();
     }
 
-    public List<MultipartFile> getAllFilesWithJavaExtension(){
-        return null;
+    public List<FileModel> getAllFilesWithJavaExtension(){
+        return fileRepository.findAll();
     }
 }
