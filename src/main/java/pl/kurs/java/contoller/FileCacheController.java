@@ -1,6 +1,7 @@
 package pl.kurs.java.contoller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,9 +13,11 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
+@CrossOrigin("http://localhost:8081")
 public class FileCacheController {
-    private final FileService fileService;
+
+    @Autowired
+    private FileService fileService;
 
     @RequestMapping("/")
     public ResponseEntity<String> welcome(){
@@ -22,7 +25,7 @@ public class FileCacheController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
             fileService.save(file);
         } else {

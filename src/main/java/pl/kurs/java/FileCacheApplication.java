@@ -5,6 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class FileCacheApplication {
+
+    // https://bezkoder.com/spring-boot-upload-file-database/ TO DZIALA!!!
+
+
+
     /*
     Stworz aplikacje, ktora bedzie miala ponizsze metody
     @POST /upload
