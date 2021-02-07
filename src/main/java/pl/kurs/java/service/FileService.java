@@ -34,7 +34,7 @@ public class FileService {
 
     public Long save(MultipartFile file) throws IOException, DuplicateFileNameException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        FileModel fileModel = new FileModel(0, fileName, file.getContentType(), file.getBytes());
+        FileModel fileModel = FileModel.builder().name(fileName).type(file.getContentType()).data(file.getBytes()).build();
         if (existInDatabase(fileName)) throw new DuplicateFileNameException();
         else {
             FileModel save = fileRepository.save(fileModel);
