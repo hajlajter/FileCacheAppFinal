@@ -23,12 +23,12 @@ public class FileService {
 
     public String homePage() {
         return "Welcome to my archive. Poniżej instrukcja użytkowania.<br>" +
-                "Strona główna: https://file-cache-app-final.herokuapp.com\n" +
-                "Dodawanie pliku do archiwum (tylko poprzez programy typu Postman) POST: https://file-cache-app-final.herokuapp.com/upload + plik do wrzucenia, KEY=file\n" +
-                "Pobranie pliku po nazwie (tylko poprzez przeglądarkę) GET: https://file-cache-app-final.herokuapp.com/file/NAZWA_PLIKU\n" +
-                "Pobranie pliku po id (tylko poprzez przeglądarkę) GET: https://file-cache-app-final.herokuapp.com/file/id/ID\n" +
-                "Wyswietlenie listy plików o podanym rozszerzeniu GET: https://file-cache-app-final.herokuapp.com/file/extension/ROZSZERZENIE\n" +
-                "Wyświetlenie listy wszystkich plików GET: https://file-cache-app-final.herokuapp.com/file/all\n" +
+                "Strona główna: https://file-cache-app-final.herokuapp.com<br>" +
+                "Dodawanie pliku do archiwum (tylko poprzez programy typu Postman) POST: https://file-cache-app-final.herokuapp.com/upload + plik do wrzucenia, KEY=file<br>" +
+                "Pobranie pliku po nazwie (tylko poprzez przeglądarkę) GET: https://file-cache-app-final.herokuapp.com/file/NAZWA_PLIKU<br>" +
+                "Pobranie pliku po id (tylko poprzez przeglądarkę) GET: https://file-cache-app-final.herokuapp.com/file/id/ID<br>" +
+                "Wyswietlenie listy plików o podanym rozszerzeniu GET: https://file-cache-app-final.herokuapp.com/file/extension/ROZSZERZENIE<br>" +
+                "Wyświetlenie listy wszystkich plików GET: https://file-cache-app-final.herokuapp.com/file/all<br>" +
                 "Usuwać też się da.";
     }
 
