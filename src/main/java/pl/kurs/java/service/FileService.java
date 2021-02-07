@@ -22,7 +22,7 @@ public class FileService {
     private final FileRepository fileRepository;
 
     public String homePage() {
-        return "Welcome to my archive. Poniżej instrukcja użytkowania.\n" +
+        return "Welcome to my archive. Poniżej instrukcja użytkowania." + System.lineSeparator() +
                 "Strona główna: https://file-cache-app-final.herokuapp.com\n" +
                 "Dodawanie pliku do archiwum (tylko poprzez programy typu Postman) POST: https://file-cache-app-final.herokuapp.com/upload + plik do wrzucenia, KEY=file\n" +
                 "Pobranie pliku po nazwie (tylko poprzez przeglądarkę) GET: https://file-cache-app-final.herokuapp.com/file/NAZWA_PLIKU\n" +
