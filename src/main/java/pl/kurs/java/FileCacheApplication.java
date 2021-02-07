@@ -6,10 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FileCacheApplication {
 
-    // https://bezkoder.com/spring-boot-upload-file-database/ TO DZIALA!!!
-
-
-
     /*
     Stworz aplikacje, ktora bedzie miala ponizsze metody
     @POST /upload
@@ -22,6 +18,8 @@ public class FileCacheApplication {
     @GET /file/extension/java
     ta metoda ma ściągać wszystkie pliki o rozszerzeniu .java
 
+DODATKOWO:
+Napisz testy do wszystkiego
      */
     public static void main(String[] args) {
         SpringApplication.run(FileCacheApplication.class, args);
