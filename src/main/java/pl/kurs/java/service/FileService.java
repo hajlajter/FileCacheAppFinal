@@ -33,15 +33,15 @@ public class FileService {
                 "Usuwać też się da.";
     }
 
-    public Long save(MultipartFile file) throws IOException, DuplicateFileNameException {
+    public String save(MultipartFile file) throws IOException, DuplicateFileNameException {
         int dotPlace = file.getOriginalFilename().lastIndexOf(".");
         String extension = file.getOriginalFilename().substring(dotPlace);
-        String fileName = file.getOriginalFilename() + extension;
+        String fileName = UUID.randomUUID().toString() + extension;
         FileModel fileModel = FileModel.builder().name(fileName).type(file.getContentType()).data(file.getBytes()).build();
         if (existInDatabase(fileName)) throw new DuplicateFileNameException();
         else {
             FileModel save = fileRepository.save(fileModel);
-            return save.getId();
+            return save.getName();
         }
     }
 
