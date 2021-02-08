@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,7 +34,7 @@ public class FileService {
     }
 
     public Long save(MultipartFile file) throws IOException, DuplicateFileNameException {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = UUID.randomUUID().toString();
         FileModel fileModel = FileModel.builder().name(fileName).type(file.getContentType()).data(file.getBytes()).build();
         if (existInDatabase(fileName)) throw new DuplicateFileNameException();
         else {
@@ -43,11 +44,7 @@ public class FileService {
     }
 
     public boolean existInDatabase(String name) {
-        if (fileRepository.existByName(name) == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return fileRepository.existsByName(name);
     }
 
     public FileModel getOneFileByName(String name) throws IOException {
