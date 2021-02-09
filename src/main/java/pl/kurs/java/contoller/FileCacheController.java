@@ -11,8 +11,10 @@ import pl.kurs.java.exception.UploadFileNotFoundException;
 import pl.kurs.java.model.FileModel;
 import pl.kurs.java.service.FileService;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.zip.ZipInputStream;
 
 @Controller
 @CrossOrigin("http://localhost:8081")
@@ -51,8 +53,9 @@ public class FileCacheController {
     }
 
     @GetMapping("/file/extension/{extension}")
-    public ResponseEntity<List<FileModel>> getFilesWithExtension(@PathVariable("extension") String extension) {
-        return ResponseEntity.status(HttpStatus.FOUND).body(fileService.getAllFilesWithExtension(extension));
+    public ResponseEntity<ZipInputStream> getFilesWithExtension(@PathVariable("extension") String extension) throws IOException {
+        ZipInputStream fileOutputStream = fileService.getAllFilesWithExtension(extension);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename\"" + "files.zip" + "\"").body(fileOutputStream);
     }
 
     @GetMapping("/file/all")

@@ -9,12 +9,14 @@ import pl.kurs.java.exception.FilesNotFoundException;
 import pl.kurs.java.model.FileModel;
 import pl.kurs.java.repository.FileRepository;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 @Service
 @RequiredArgsConstructor
@@ -58,16 +60,39 @@ public class FileService {
         }
     }
 
+    public String zipMultipleFiles(List<FileModel> fileModels) throws IOException {
+        String name = UUID.randomUUID().toString();
+        FileOutputStream fos = new FileOutputStream(name);
+        ZipOutputStream zipOut = new ZipOutputStream(fos);
+        for (FileModel fileModel : fileModels) {
+            InputStream fis = new ByteArrayInputStream(fileModel.getData());
+            ZipEntry zipEntry = new ZipEntry(fileModel.getName());
+            zipOut.putNextEntry(zipEntry);
+            byte[] bytes = new byte[1024];
+            int lenght;
+            while ((lenght = fis.read(bytes)) >= 0) {
+                zipOut.write(bytes, 0, lenght);
+            }
+            fis.close();
+        }
+        zipOut.close();
+        fos.close();
+        return name;
+    }
+
     public FileModel getOneFileById(Long id) throws FileNotFoundException {
         return Optional.of(fileRepository.findById(id).get()).orElseThrow(FileNotFoundException::new);
     }
 
-    public List<FileModel> getAllFilesWithExtension(String extension) {
+    public ZipInputStream getAllFilesWithExtension(String extension) throws IOException {
         List<FileModel> collect = fileRepository.findAll().stream()
                 .filter(x -> x.getName().endsWith("." + extension))
                 .collect(Collectors.toList());
         if (collect.size() > 0) {
-            return collect;
+            String name = zipMultipleFiles(collect);
+            FileInputStream fileInputStream = new FileInputStream(name);
+            ZipInputStream zipInputStream = new ZipInputStream(fileInputStream);
+            return zipInputStream;
         } else {
             throw new FilesNotFoundException();
         }
