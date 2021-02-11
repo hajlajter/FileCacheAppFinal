@@ -11,10 +11,10 @@ import pl.kurs.java.exception.UploadFileNotFoundException;
 import pl.kurs.java.model.FileModel;
 import pl.kurs.java.service.FileService;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 @Controller
 @CrossOrigin("http://localhost:8081")
@@ -31,7 +31,7 @@ public class FileCacheController {
     @PostMapping("/upload")
     public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK).body("ID: " + fileService.save(file));
+            return ResponseEntity.status(HttpStatus.OK).body("File name in database: " + fileService.save(file));
         } else {
             throw new UploadFileNotFoundException();
         }
@@ -53,13 +53,13 @@ public class FileCacheController {
     }
 
     @GetMapping("/file/extension/{extension}")
-    public ResponseEntity<ZipInputStream> getFilesWithExtension(@PathVariable("extension") String extension) throws IOException {
-        ZipInputStream fileOutputStream = fileService.getAllFilesWithExtension(extension);
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename\"" + "files.zip" + "\"").body(fileOutputStream);
+    public ResponseEntity<byte[]> getFilesWithExtension(@PathVariable("extension") String extension) throws IOException {
+        byte[] fileOutputStream = fileService.getAllFilesWithExtension(extension);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"files.zip\"").body(fileOutputStream);
     }
 
     @GetMapping("/file/all")
-    public ResponseEntity<List<FileModel>> getAllFiles() {
+    public ResponseEntity<List<String>> getAllFiles() {
         return ResponseEntity.status(HttpStatus.FOUND).body(fileService.getAllFiles());
     }
 
@@ -68,8 +68,8 @@ public class FileCacheController {
         return ResponseEntity.status(HttpStatus.OK).body(fileService.deleteAllFiles());
     }
 
-    @DeleteMapping("/chuj/{id}")
-    public ResponseEntity<String> deleteOneFile(@PathVariable("id") Long id) {
+    @DeleteMapping("/chuj/{name}")
+    public ResponseEntity<String> deleteOneFile(@PathVariable("name") String id) {
         return ResponseEntity.status(HttpStatus.OK).body(fileService.deleteOneFile(id));
     }
 }

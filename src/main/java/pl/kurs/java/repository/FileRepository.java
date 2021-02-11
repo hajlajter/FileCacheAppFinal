@@ -9,7 +9,10 @@ import java.util.List;
 @Repository
 public interface FileRepository extends JpaRepository<FileModel, Long> {
 
-    List<FileModel> findByName(String name);
+    FileModel findByName(String name);
+
+    Long deleteByName(String name);
 
     boolean existsByName(String name);
+
 }

@@ -2,14 +2,17 @@ package pl.kurs.java.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+
 import org.springframework.web.multipart.MultipartFile;
 import pl.kurs.java.exception.DuplicateFileNameException;
 import pl.kurs.java.exception.FilesNotFoundException;
 import pl.kurs.java.model.FileModel;
 import pl.kurs.java.repository.FileRepository;
 
+
+import javax.transaction.Transactional;
 import java.io.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -30,8 +33,8 @@ public class FileService {
                 "Dodawanie pliku do archiwum (tylko poprzez programy typu Postman) POST: https://file-cache-app-final.herokuapp.com/upload + plik do wrzucenia, KEY=file<br>" +
                 "Pobranie pliku po nazwie (tylko poprzez przeglądarkę) GET: https://file-cache-app-final.herokuapp.com/file/NAZWA_PLIKU<br>" +
                 "Pobranie pliku po id (tylko poprzez przeglądarkę) GET: https://file-cache-app-final.herokuapp.com/file/id/ID<br>" +
-                "Wyswietlenie listy plików o podanym rozszerzeniu GET: https://file-cache-app-final.herokuapp.com/file/extension/ROZSZERZENIE<br>" +
-                "Wyświetlenie listy wszystkich plików GET: https://file-cache-app-final.herokuapp.com/file/all<br>" +
+                "Pobranie wszystkich plików o podanym rozszerzeniu GET: https://file-cache-app-final.herokuapp.com/file/extension/ROZSZERZENIE<br>" +
+                "Wyświetlenie nazw wszystkich plików GET: https://file-cache-app-final.herokuapp.com/file/all<br>" +
                 "Usuwać też się da.";
     }
 
@@ -40,28 +43,21 @@ public class FileService {
         String extension = file.getOriginalFilename().substring(dotPlace);
         String fileName = UUID.randomUUID().toString() + extension;
         FileModel fileModel = FileModel.builder().name(fileName).type(file.getContentType()).data(file.getBytes()).build();
-        if (existInDatabase(fileName)) throw new DuplicateFileNameException();
-        else {
-            FileModel save = fileRepository.save(fileModel);
-            return save.getName();
-        }
+        FileModel save = fileRepository.save(fileModel);
+        return save.getName();
+
     }
 
-    public boolean existInDatabase(String name) {
-        return fileRepository.existsByName(name);
+    public FileModel getOneFileByName(String name) throws FileNotFoundException {
+        return Optional.of(fileRepository.findByName(name)).orElseThrow(FilesNotFoundException::new);
     }
 
-    public FileModel getOneFileByName(String name) throws IOException {
-        List<FileModel> byName = fileRepository.findByName(name);
-        if (byName.size() < 1) {
-            throw new FileNotFoundException("Plik o podanej nazwie nie występuje w bazie");
-        } else {
-            return byName.get(0);
-        }
+    public FileModel getOneFileById(Long id) throws FileNotFoundException {
+        return Optional.of(fileRepository.findById(id).get()).orElseThrow(FileNotFoundException::new);
     }
 
     public String zipMultipleFiles(List<FileModel> fileModels) throws IOException {
-        String name = UUID.randomUUID().toString();
+        String name = UUID.randomUUID().toString() + ".zip";
         FileOutputStream fos = new FileOutputStream(name);
         ZipOutputStream zipOut = new ZipOutputStream(fos);
         for (FileModel fileModel : fileModels) {
@@ -80,26 +76,33 @@ public class FileService {
         return name;
     }
 
-    public FileModel getOneFileById(Long id) throws FileNotFoundException {
-        return Optional.of(fileRepository.findById(id).get()).orElseThrow(FileNotFoundException::new);
-    }
 
-    public ZipInputStream getAllFilesWithExtension(String extension) throws IOException {
+    public byte[] getAllFilesWithExtension(String extension) throws IOException {
         List<FileModel> collect = fileRepository.findAll().stream()
                 .filter(x -> x.getName().endsWith("." + extension))
                 .collect(Collectors.toList());
         if (collect.size() > 0) {
-            String name = zipMultipleFiles(collect);
-            FileInputStream fileInputStream = new FileInputStream(name);
-            ZipInputStream zipInputStream = new ZipInputStream(fileInputStream);
-            return zipInputStream;
+            String zipName = zipMultipleFiles(collect);
+            File file = new File(zipName);
+            FileInputStream in = new FileInputStream(zipName);
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(in);
+
+            byte[] bytes = bufferedInputStream.readAllBytes();
+
+            in.close();
+            bufferedInputStream.close();
+            file.delete();
+
+            return bytes;
         } else {
             throw new FilesNotFoundException();
         }
     }
 
-    public List<FileModel> getAllFiles() {
-        return fileRepository.findAll();
+    public List<String> getAllFiles() {
+        return fileRepository.findAll().stream()
+                .map(FileModel::getName)
+                .collect(Collectors.toList());
     }
 
     public String deleteAllFiles() {
@@ -111,12 +114,13 @@ public class FileService {
         }
     }
 
-    public String deleteOneFile(Long id) {
-        if (fileRepository.existsById(id)) {
-            fileRepository.deleteById(id);
+    @Transactional
+    public String deleteOneFile(String name) {
+        if (fileRepository.existsByName(name)) {
+            fileRepository.deleteByName(name);
             return "Plik usunięty";
         } else {
-            return "Plik o podanym id nie istnieje";
+            return "Plik o podanej nazwie nie istnieje";
         }
     }
 
