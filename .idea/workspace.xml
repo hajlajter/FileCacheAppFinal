@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9edbf16d-4f3a-4f50-bf32-0748aacdb4d7" name="Default Changelist" comment="update">
+    <list default="true" id="9edbf16d-4f3a-4f50-bf32-0748aacdb4d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/kurs/java/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kurs/java/service/FileService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613066030444</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="update v2">
+      <created>1613067250963</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1613067250963</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -303,7 +309,8 @@
     <MESSAGE value="change save() in FileService.java" />
     <MESSAGE value="change getFileWithExtension() in FileService.java" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="update v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="update v2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613066190678">
@@ -322,10 +329,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="504" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1612475218806" />
-    <state x="529" y="0" key="CommitChangelistDialog2" timestamp="1613066054693">
+    <state x="529" y="0" key="CommitChangelistDialog2" timestamp="1613067250335">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="529" y="0" key="CommitChangelistDialog2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1613066054693" />
+    <state x="529" y="0" key="CommitChangelistDialog2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1613067250335" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1613066290947">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -374,10 +381,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="0" key="SettingsEditor/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1613066248218" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1613066034937">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1613067252289">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1613066034937" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1613067252289" />
     <state x="0" y="0" key="com.intellij.ide.util.TipDialog" timestamp="1612798043135">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -1,6 +1,7 @@
 package pl.kurs.java.service;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +13,7 @@ import pl.kurs.java.repository.FileRepository;
 
 import javax.transaction.Transactional;
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -85,12 +87,10 @@ public class FileService {
             String zipName = zipMultipleFiles(collect);
             File file = new File(zipName);
             FileInputStream in = new FileInputStream(zipName);
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(in);
 
-            byte[] bytes = bufferedInputStream.readAllBytes();
+            byte[] bytes = FileUtils.readFileToByteArray(file);
 
             in.close();
-            bufferedInputStream.close();
             file.delete();
 
             return bytes;
