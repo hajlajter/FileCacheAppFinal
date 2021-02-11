@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9edbf16d-4f3a-4f50-bf32-0748aacdb4d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/kurs/java/contoller/FileCacheController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kurs/java/contoller/FileCacheController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/kurs/java/repository/FileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kurs/java/repository/FileRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/kurs/java/service/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/kurs/java/service/FileService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -272,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613067250963</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="update v3">
+      <created>1613068298804</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1613068298804</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -310,7 +319,8 @@
     <MESSAGE value="change getFileWithExtension() in FileService.java" />
     <MESSAGE value="update" />
     <MESSAGE value="update v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="update v2" />
+    <MESSAGE value="update v3" />
+    <option name="LAST_COMMIT_MESSAGE" value="update v3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613066190678">
@@ -329,10 +339,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="504" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1612475218806" />
-    <state x="529" y="0" key="CommitChangelistDialog2" timestamp="1613067250335">
+    <state x="529" y="0" key="CommitChangelistDialog2" timestamp="1613068298197">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="529" y="0" key="CommitChangelistDialog2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1613067250335" />
+    <state x="529" y="0" key="CommitChangelistDialog2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1613068298197" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1613066290947">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -381,10 +391,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="0" key="SettingsEditor/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1613066248218" />
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1613067252289">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1613068313154">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1613067252289" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824/-1920.2.1920.1040@0.0.1536.824" timestamp="1613068313154" />
     <state x="0" y="0" key="com.intellij.ide.util.TipDialog" timestamp="1612798043135">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -415,7 +425,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/pl/kurs/java/contoller/FileCacheController.java</url>
-          <line>55</line>
+          <line>53</line>
           <properties class="pl.kurs.java.contoller.FileCacheController" method="getFilesWithExtension">
             <option name="EMULATED" value="true" />
           </properties>

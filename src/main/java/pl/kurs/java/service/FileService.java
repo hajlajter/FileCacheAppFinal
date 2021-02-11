@@ -3,24 +3,19 @@ package pl.kurs.java.service;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
-
 import org.springframework.web.multipart.MultipartFile;
 import pl.kurs.java.exception.DuplicateFileNameException;
 import pl.kurs.java.exception.FilesNotFoundException;
 import pl.kurs.java.model.FileModel;
 import pl.kurs.java.repository.FileRepository;
 
-
 import javax.transaction.Transactional;
 import java.io.*;
-import java.nio.file.Files;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 @Service
@@ -51,7 +46,11 @@ public class FileService {
     }
 
     public FileModel getOneFileByName(String name) throws FileNotFoundException {
-        return Optional.of(fileRepository.findByName(name)).orElseThrow(FilesNotFoundException::new);
+        if (fileRepository.existsByName(name)) {
+            return fileRepository.findByName(name);
+        } else {
+            throw new FileNotFoundException("Plik o danej nazwie nie występuje w bazie");
+        }
     }
 
     public FileModel getOneFileById(Long id) throws FileNotFoundException {

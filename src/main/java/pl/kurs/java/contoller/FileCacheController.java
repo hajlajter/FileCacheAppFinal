@@ -11,10 +11,8 @@ import pl.kurs.java.exception.UploadFileNotFoundException;
 import pl.kurs.java.model.FileModel;
 import pl.kurs.java.service.FileService;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.List;
-import java.util.zip.ZipInputStream;
-import java.util.zip.ZipOutputStream;
 
 @Controller
 @CrossOrigin("http://localhost:8081")
