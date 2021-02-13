@@ -1,7 +1,9 @@
 package pl.kurs.java.service;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import pl.kurs.java.exception.DuplicateFileNameException;
@@ -9,8 +11,13 @@ import pl.kurs.java.exception.FilesNotFoundException;
 import pl.kurs.java.model.FileModel;
 import pl.kurs.java.repository.FileRepository;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -74,25 +81,23 @@ public class FileService {
         }
         zipOut.close();
         fos.close();
+
         return name;
     }
 
-
-    public byte[] getAllFilesWithExtension(String extension) throws IOException {
+    public ByteArrayResource getAllFilesWithExtension(String extension) throws IOException {
         List<FileModel> collect = fileRepository.findAll().stream()
                 .filter(x -> x.getName().endsWith("." + extension))
                 .collect(Collectors.toList());
         if (collect.size() > 0) {
             String zipName = zipMultipleFiles(collect);
             File file = new File(zipName);
-            FileInputStream in = new FileInputStream(zipName);
 
-            byte[] bytes = FileUtils.readFileToByteArray(file);
+            Path path = Paths.get(file.getAbsolutePath());
+            ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
 
-            in.close();
             file.delete();
-
-            return bytes;
+            return resource;
         } else {
             throw new FilesNotFoundException();
         }
@@ -124,3 +129,49 @@ public class FileService {
     }
 
 }
+/*
+KOPIA AWARYJNA
+
+
+
+    public String zipMultipleFiles(List<FileModel> fileModels) throws IOException {
+        String name = UUID.randomUUID().toString() + ".zip";
+        FileOutputStream fos = new FileOutputStream(name);
+        ZipOutputStream zipOut = new ZipOutputStream(fos);
+        for (FileModel fileModel : fileModels) {
+            InputStream fis = new ByteArrayInputStream(fileModel.getData());
+            ZipEntry zipEntry = new ZipEntry(fileModel.getName());
+            zipOut.putNextEntry(zipEntry);
+            byte[] bytes = new byte[1024];
+            int lenght;
+            while ((lenght = fis.read(bytes)) >= 0) {
+                zipOut.write(bytes, 0, lenght);
+            }
+            fis.close();
+        }
+        zipOut.close();
+        fos.close();
+
+        return name;
+    }
+
+
+    public ByteArrayResource getAllFilesWithExtension(String extension) throws IOException {
+        List<FileModel> collect = fileRepository.findAll().stream()
+                .filter(x -> x.getName().endsWith("." + extension))
+                .collect(Collectors.toList());
+        if (collect.size() > 0) {
+            String zipName = zipMultipleFiles(collect);
+            File file = new File(zipName);
+
+            Path path = Paths.get(file.getAbsolutePath());
+            ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+
+            file.delete();
+            System.out.println(file.exists());
+            return resource;
+        } else {
+            throw new FilesNotFoundException();
+        }
+    }
+ */
