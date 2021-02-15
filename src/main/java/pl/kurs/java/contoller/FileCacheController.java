@@ -2,7 +2,6 @@ package pl.kurs.java.contoller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import pl.kurs.java.exception.UploadFileNotFoundException;
 import pl.kurs.java.model.FileModel;
 import pl.kurs.java.service.FileService;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
